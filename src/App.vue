@@ -1,39 +1,41 @@
 <template>
   <div 
     id="quote-box" 
-    :class="'container ' + bgcol"
+    :class="'container-fluid ' + bgcol"
   >
     <img 
       src="./assets/kanye2-512.png" 
       class="kanye-icon" 
       alt="logo"
     />
-    <div class="container-quote-and-buttons">
-      <div class="quote-box">
-        <div id="text" class="quote-paragraph">
-          {{kanyeQuoteFormatted}}
+    <div class="row-fluid w-100 container-quote-and-buttons">
+      <div class="col-12 col-lg-7">
+        <div class="quote-box">
+          <div id="text" class="quote-paragraph">
+            {{kanyeQuoteFormatted}}
+          </div>
+          <span id="author" class="author-span">Kanye West</span>
         </div>
-        <span id="author" class="author-span">Kanye West</span>
-      </div>
-      <div class="button-row">
-        <div class="social-links">
-          <a 
-            id="tweet-quote" 
-            class="btn btn-social" 
-            :href="'http://twitter.com/intent/tweet?text=' + kanyeQuoteFormatted + ' – Kanye West'" 
-            rel="noopener noreferrer" 
-            target="_blank"
+        <div class="button-row">
+          <div class="social-links">
+            <a 
+              id="tweet-quote" 
+              class="btn btn-social" 
+              :href="'http://twitter.com/intent/tweet?text=' + kanyeQuoteFormatted + ' – Kanye West'" 
+              rel="noopener noreferrer" 
+              target="_blank"
+            >
+              <font-awesome-icon :icon="['fab', 'twitter']"/>
+            </a>
+          </div>
+          <button
+            class="btn"
+            id="new-quote"
+            @click="getQuote"
           >
-            <font-awesome-icon :icon="['fab', 'twitter']"/>
-          </a>
+            {{buttonLabel}}
+          </button>
         </div>
-        <button
-          class="btn"
-          id="new-quote"
-          @click="getQuote"
-        >
-          {{buttonLabel}}
-        </button>
       </div>
     </div>
   </div>
@@ -60,7 +62,7 @@ export default {
       return this.loading ? 'bgcolor-' + Math.floor(Math.random() * 5) : 'bgcolor-' + Math.floor(Math.random() * 5);
     },
     buttonLabel() {
-      return this.loading ? 'Wating for Kanye …' : 'Keep \'em coming Kanye!';
+      return this.loading ? 'Kanye\'s thinking …' : 'Keep \'em coming Kanye!';
     },
     kanyeQuoteFormatted() {
       return '"'+this.kanyeQuote+'"';
@@ -80,131 +82,4 @@ export default {
 }
 </script>
 
-<style>
-  @import url('https://fonts.googleapis.com/css?family=Noto+Sans+HK:400,700&display=swap');
 
-  body {
-    font-family: 'Noto Sans HK', sans-serif;
-    padding: 0;
-    margin: 0;
-  }
-
-  .kanye-icon {
-    /* animation: App-logo-spin infinite 20s linear; */
-    height: 15rem;
-    pointer-events: none;
-    margin-bottom: 1rem;
-  }
-
-  .container {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: 2rem;
-    color: black;
-    transition: background-color linear 1s;
-  }
-
-  button, input[type="submit"], input[type="reset"] {
-    background: none;
-    color: inherit;
-    border: none;
-    padding: 0;
-    font: inherit;
-    cursor: pointer;
-    outline: inherit;
-  }
-
-  .btn {
-    align-self: flex-end;
-    box-sizing: border-box;
-    background-color: blue;
-    text-decoration: none;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    cursor: pointer;
-    z-index: 2;
-    display: inline-block;
-    padding: 19px 25px 22px;
-    line-height: 17px;
-    font-size: 15px;
-    text-align: center;
-    background: #000;
-    color: #fff;
-    transition: box-shadow 0.3s, -webkit-transform 0.3s;
-    transition: box-shadow 0.3s, transform 0.3s;
-    transition: box-shadow 0.3s, transform 0.3s, -webkit-transform 0.3s;
-  }
-
-  .btn:hover {
-    transform: translate(5px, -4px);
-    color: #fff;
-    box-shadow: -10px 8px 0 #fff;
-    transition: all .25s cubic-bezier(0.83, 0.16, 0.38, 0.9) 0s;
-  }
-
-  .social-links {
-    align-self: flex-start
-  }
-
-  .quote-box {
-    width: 100%;
-    font-weight: 700;
-    background-color: transparent;
-    padding: 2rem 0 2rem;
-    border: 5px solid black;
-    margin-bottom: 2rem;
-  }
-
-  .author-span {
-    font-weight: 400;
-    font-size: 1rem;
-    text-align: center;
-  }
-
-  .container-quote-and-buttons {
-    padding: 0;
-    width: 40vw;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-  }
-
-  .button-row {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .btn-social {
-    margin-right: 1rem;
-  }
-
-  .quote-paragraph {
-    text-align: center;
-    padding: 0 25px 0 25px;
-  }
-
-  .bgcolor-0 {
-    background-color: #A8E6CF;
-  }
-  .bgcolor-1 {
-    background-color: #FFD747;
-  }
-  .bgcolor-2 {
-    background-color: #FF8C64;
-  }
-  .bgcolor-3 {
-    background-color: #FF665A;
-  }
-  .bgcolor-4 {
-    background-color: #F8B195;
-  }
-  .bgcolor-5 {
-    background-color: #FFAB2D;
-  }
-</style>
